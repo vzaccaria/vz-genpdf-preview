@@ -10,7 +10,7 @@ import Data.String
 import System.Exit
 import qualified Data.Map as M
 import Control.Monad (when)
-import UsageCLI (progUsage)
+import UsageCLI (progUsage, defaultmap)
 import qualified Data.Text as T
 import Debug.Trace
 import Filesystem.Path.CurrentOS -- Enables fromString!
@@ -26,7 +26,6 @@ dispatchOptions usage = do {
       hasLOpt       name = (isPresent opts (longOption name))
       getLOptVal    name = let (Just s) = getArg opts (longOption name) in s
 
-      defaultmap               = "/Users/zaccaria/Dropbox/Public/:dl.dropboxusercontent.com/u/5867765"
 
       dryrun                   = not (isPresent opts (longOption "go"))
       run                      = if dryrun then (\c -> do { putStrLn c; return ExitSuccess}) else system
